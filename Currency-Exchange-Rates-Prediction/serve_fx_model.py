@@ -31,7 +31,12 @@ def predict_fx(input: FXInput):
     latency = round(time.time() - start, 4)
     return {"predicted_fx_rate": round(float(pred), 5), "latency_seconds": latency}
     
-# TODO: Log every prediction to predictions.log
-
-# TODO: add batch job to evaluate against requested predictions over night 
-# & improve the model by checking the error diff against false predictions.
+# TODO[Optional]: Ideas to improve this further: 
+#  - Log every prediction to predictions.log
+#  - Add batch job to evaluate against requested predictions over night 
+#    & improve the model by checking the error diff against false predictions.
+#  - Read about possible use cases for this model & if its viable to predict this accurately
+#    or if its not realistic to predict exchange rates due to market volatility.
+#  - See if other asset tickers e.g. stocks or real estate prices can be more accurately predicted
+#    using various different features like historical data, news, economic data, etc.
+#

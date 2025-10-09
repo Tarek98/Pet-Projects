@@ -1,0 +1,5 @@
+postal_code,event_timestamp,avg_rent_1br,avg_rent_2br,avg_rent_3br,city_vacancy_rate
+V6B1A1,2025-01-01,2100,2800,3400,2.5
+V6B1A1,2025-02-01,2150,2850,3450,2.7
+M5V2T6,2025-01-01,2200,2950,3600,3.2
+M5V2T6,2025-02-01,2250,3000,3650,3.5

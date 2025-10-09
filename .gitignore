@@ -1,2 +1,16 @@
 # Draft local projects
 Draft/
+
+# IDE files
+.vscode/
+
+# Virtual environment
+venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Project specific files
+*.joblib

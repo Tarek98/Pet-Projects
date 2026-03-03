@@ -1,14 +1,15 @@
 """
 Day 1 — RAG demo: load a policy doc, embed, retrieve, and answer questions.
 Run from starter_project/: python rag_demo.py
-Requires: .env with OPENAI_API_KEY
+Requires: .env with ANTHROPIC_API_KEY
 """
 import os
 from pathlib import Path
 
 from dotenv import load_dotenv
 from langchain_chroma import Chroma
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_anthropic import ChatAnthropic
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
@@ -35,8 +36,11 @@ def load_and_chunk_docs(chunk_size: int = 500, overlap: int = 50):
 
 
 def build_retriever(top_k: int = 3):
-    """Build or reuse Chroma vector store and return retriever."""
-    embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+    """Build or reuse Chroma vector store and return retriever.
+    Uses local HuggingFace embeddings (no API key needed for embeddings).
+    If you had a previous chroma_db from another embedder, delete the chroma_db folder to rebuild.
+    """
+    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     if PERSIST_DIR.exists() and any(PERSIST_DIR.iterdir()):
         vectorstore = Chroma(
             persist_directory=str(PERSIST_DIR),
@@ -53,12 +57,12 @@ def build_retriever(top_k: int = 3):
 
 
 def main():
-    if not os.getenv("OPENAI_API_KEY"):
-        print("Set OPENAI_API_KEY in .env to run this demo.")
+    if not os.getenv("ANTHROPIC_API_KEY"):
+        print("Set ANTHROPIC_API_KEY in .env to run this demo.")
         return
 
     retriever = build_retriever(top_k=3)
-    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+    llm = ChatAnthropic(model="claude-3-5-sonnet-20241022", temperature=0)
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", "Answer using only the following context. If the answer is not in the context, say so.\n\nContext:\n{context}"),

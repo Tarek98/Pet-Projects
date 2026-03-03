@@ -110,7 +110,7 @@ cd Workday-AI-Agent-Prep/starter_project
 python -m venv .venv
 source .venv/bin/activate   # or .venv\Scripts\activate on Windows
 pip install -r requirements.txt
-cp .env.example .env        # then add your OPENAI_API_KEY
+cp .env.example .env        # then add your ANTHROPIC_API_KEY
 python rag_demo.py          # RAG demo (Day 1)
 python agent_simple.py      # Agent with tools (Day 2)
 python evals_simple.py      # Simple evals (Day 3)

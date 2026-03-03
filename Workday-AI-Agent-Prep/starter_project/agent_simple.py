@@ -2,13 +2,13 @@
 Day 2 — Simple agent with tools (ReAct-style).
 Simulates HR/Finance-style tools: leave balance, policy lookup, expense guidelines.
 Run from starter_project/: python agent_simple.py
-Requires: .env with OPENAI_API_KEY
+Requires: .env with ANTHROPIC_API_KEY
 """
 import os
 from typing import Annotated
 
 from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI
+from langchain_anthropic import ChatAnthropic
 from langchain_core.tools import tool
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain.agents import create_tool_calling_agent, AgentExecutor
@@ -62,12 +62,12 @@ def search_expense_guidelines(
 
 
 def main():
-    if not os.getenv("OPENAI_API_KEY"):
-        print("Set OPENAI_API_KEY in .env to run this demo.")
+    if not os.getenv("ANTHROPIC_API_KEY"):
+        print("Set ANTHROPIC_API_KEY in .env to run this demo.")
         return
 
     tools = [get_leave_balance, lookup_policy, search_expense_guidelines]
-    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+    llm = ChatAnthropic(model="claude-3-5-sonnet-20241022", temperature=0)
 
     prompt = ChatPromptTemplate.from_messages([
         SystemMessage(content="You are an HR/Finance assistant. Use the tools to answer questions about leave balance, policies, and expenses. Be concise."),

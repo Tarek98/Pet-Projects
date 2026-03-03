@@ -2,12 +2,12 @@
 Day 3 — Simple agentic evals: run the agent on a few golden prompts and check
 that the right tools were used or key content appears in the output.
 Run from starter_project/: python evals_simple.py
-Requires: .env with OPENAI_API_KEY, and agent_simple's tools/agent.
+Requires: .env with ANTHROPIC_API_KEY, and agent_simple's tools/agent.
 """
 import os
 
 from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI
+from langchain_anthropic import ChatAnthropic
 from langchain_core.tools import tool
 from langchain.agents import create_tool_calling_agent, AgentExecutor
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
@@ -21,7 +21,7 @@ load_dotenv()
 
 def build_executor():
     tools = [get_leave_balance, lookup_policy, search_expense_guidelines]
-    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+    llm = ChatAnthropic(model="claude-3-5-sonnet-20241022", temperature=0)
     prompt = ChatPromptTemplate.from_messages([
         SystemMessage(content="You are an HR/Finance assistant. Use the tools to answer. Be concise."),
         ("human", "{input}"),
@@ -52,8 +52,8 @@ GOLDEN = [
 
 
 def run_evals():
-    if not os.getenv("OPENAI_API_KEY"):
-        print("Set OPENAI_API_KEY in .env to run evals.")
+    if not os.getenv("ANTHROPIC_API_KEY"):
+        print("Set ANTHROPIC_API_KEY in .env to run evals.")
         return
 
     executor = build_executor()

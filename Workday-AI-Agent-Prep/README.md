@@ -65,7 +65,14 @@ This plan prioritizes **agent concepts and tooling** so you can speak to the sta
 ### MCP (Model Context Protocol) (≈1–1.5 hours)
 
 - **What:** Open protocol so any client (e.g. Cursor) can discover and call **tools** and **resources** from a server — “USB-C for AI.”
-- **Hands-on:** `starter_project/mcp_server_hr/` has a minimal MCP server (`get_leave_balance`, `get_policy_snippet`). Run with `pip install "mcp[cli]"` then `uv run hr_server.py` from inside `mcp_server_hr/`. Test with [MCP Inspector](https://github.com/modelcontextprotocol/inspector) or Cursor’s MCP config.
+- **Hands-on:** `starter_project/mcp_server_hr/` has a minimal MCP server (`get_leave_balance`, `get_policy_snippet`). To run it:
+
+  ```bash
+  pip install "mcp[cli]"
+  cd starter_project/mcp_server_hr && uv run hr_server.py   # or python hr_server.py
+  ```
+
+  Test with [MCP Inspector](https://github.com/modelcontextprotocol/inspector) or add the server to Cursor’s MCP config.
 - **Docs:** [modelcontextprotocol.io](https://modelcontextprotocol.io) — “Build an MCP server”.
 
 ### Multi-agent orchestration (≈30–60 min)
@@ -116,14 +123,9 @@ python agent_simple.py      # Agent with tools (Day 2)
 python evals_simple.py      # Simple evals (Day 3)
 ```
 
-**Day 2 — MCP server (optional):**
+For the **MCP server** (Day 2), see the run commands in the Day 2 — MCP section above.
 
-```bash
-pip install "mcp[cli]"
-cd mcp_server_hr && uv run hr_server.py   # or python hr_server.py
-```
-
-Use this as your playground for Days 1–3: add docs, add tools, add a few evals, and optionally an MCP server in a separate folder.
+Use this as your playground for Days 1–3: add docs, add tools, add a few evals, and optionally run the MCP server from `mcp_server_hr/`.
 
 ---
 

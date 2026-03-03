@@ -1,7 +1,6 @@
 """
 Day 1 — RAG demo: load a policy doc, embed, retrieve, and answer questions.
 Run from starter_project/: python rag_demo.py
-Requires: .env with ANTHROPIC_API_KEY
 """
 import os
 from pathlib import Path
@@ -9,7 +8,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from langchain_chroma import Chroma
 from langchain_anthropic import ChatAnthropic
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser

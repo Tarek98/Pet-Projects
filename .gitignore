@@ -6,6 +6,7 @@ Draft/
 
 # Virtual environment
 venv/
+.venv/
 
 # Python
 __pycache__/

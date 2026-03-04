@@ -10,8 +10,8 @@ from typing import Annotated
 from dotenv import load_dotenv
 from langchain_anthropic import ChatAnthropic
 from langchain_core.tools import tool
-from langchain_core.messages import HumanMessage, SystemMessage
-from langchain.agents import create_tool_calling_agent, AgentExecutor
+from langchain_core.messages import SystemMessage
+from langchain_classic.agents import create_tool_calling_agent, AgentExecutor
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 load_dotenv(override=True)  # .env overrides shell so the key in this project is used

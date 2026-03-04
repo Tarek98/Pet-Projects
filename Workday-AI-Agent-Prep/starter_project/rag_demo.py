@@ -1,6 +1,7 @@
 """
 Day 1 — RAG demo: load a policy doc, embed, retrieve, and answer questions.
 Run from starter_project/: python rag_demo.py
+Requires: .env with ANTHROPIC_API_KEY
 """
 import os
 from pathlib import Path

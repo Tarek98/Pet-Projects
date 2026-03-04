@@ -9,7 +9,7 @@ import os
 from dotenv import load_dotenv
 from langchain_anthropic import ChatAnthropic
 from langchain_core.tools import tool
-from langchain.agents import create_tool_calling_agent, AgentExecutor
+from langchain_classic.agents import create_tool_calling_agent, AgentExecutor
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import SystemMessage
 
@@ -28,7 +28,7 @@ def build_executor():
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ])
     agent = create_tool_calling_agent(llm, tools, prompt)
-    return AgentExecutor(agent=agent, tools=tools, verbose=False)
+    return AgentExecutor(agent=agent, tools=tools, verbose=False, return_intermediate_steps=True)
 
 
 # Golden set: (prompt, list of substrings that should appear in output OR tool names that should be called)
@@ -65,12 +65,19 @@ def run_evals():
         tools_expected = set(case.get("tools_used", []))
 
         result = executor.invoke({"input": prompt})
-        output = result.get("output", "").lower()
+        raw = result.get("output", "")
+        if isinstance(raw, list):
+            output = " ".join(getattr(x, "content", str(x)) for x in raw)
+        else:
+            output = str(raw)
+        output = output.lower()
         steps = result.get("intermediate_steps", [])
         tools_used = set()
         for step in steps:
-            if len(step) >= 1 and hasattr(step[0], "tool"):
-                tools_used.add(step[0].tool)
+            action = step[0] if isinstance(step, (list, tuple)) and len(step) >= 1 else step
+            name = getattr(action, "tool", None)
+            if name:
+                tools_used.add(name)
 
         # Check output content: all required substrings must appear
         content_ok = all(s.lower() in output for s in output_contains) if output_contains else True

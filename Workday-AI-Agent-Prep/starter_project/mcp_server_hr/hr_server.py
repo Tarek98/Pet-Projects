@@ -6,10 +6,7 @@ Test with MCP Inspector or add to Cursor MCP config.
 import sys
 from mcp.server.fastmcp import FastMCP
 
-mcp = FastMCP(
-    "hr-tools",
-    description="HR policy and leave tools for agent prep",
-)
+mcp = FastMCP("hr-tools")
 
 
 @mcp.tool()

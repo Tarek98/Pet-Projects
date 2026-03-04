@@ -67,7 +67,7 @@ def main():
         return
 
     tools = [get_leave_balance, lookup_policy, search_expense_guidelines]
-    llm = ChatAnthropic(model="claude-3-5-sonnet-20241022", temperature=0)
+    llm = ChatAnthropic(model="claude-sonnet-4-6", temperature=0)
 
     prompt = ChatPromptTemplate.from_messages([
         SystemMessage(content="You are an HR/Finance assistant. Use the tools to answer questions about leave balance, policies, and expenses. Be concise."),

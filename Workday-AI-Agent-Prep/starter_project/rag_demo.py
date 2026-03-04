@@ -61,7 +61,7 @@ def main():
         return
 
     retriever = build_retriever(top_k=3)
-    llm = ChatAnthropic(model="claude-3-5-sonnet-20241022", temperature=0)
+    llm = ChatAnthropic(model="claude-sonnet-4-6", temperature=0)
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", "Answer using only the following context. If the answer is not in the context, say so.\n\nContext:\n{context}"),
@@ -69,7 +69,7 @@ def main():
     ])
 
     def format_docs(docs):
-        return "\n\n".join(d.doc_page_content for d in docs)
+        return "\n\n".join(d.page_content for d in docs)
 
     chain = (
         {"context": retriever | format_docs, "question": RunnablePassthrough()}

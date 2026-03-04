@@ -1,0 +1,190 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(165deg, #0f2a1a 0%, #1a3d2a 28%, #243d2e 55%, #2d4a38 100%);
+  color: #e8efe8;
+}
+
+.hero {
+  text-align: center;
+  padding: 3rem 1.5rem 2rem;
+}
+.title {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.5rem;
+  color: #f5f9f5;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+.tagline {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  opacity: 0.9;
+  margin: 0;
+  max-width: 28ch;
+  margin-inline: auto;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 1.25rem 3rem;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.form-card {
+  margin-bottom: 1.75rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+.form-group label {
+  display: block;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 0.4rem;
+}
+.form-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem 1rem;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 1rem;
+  color: #f0f4f0;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+.form-group input:focus {
+  outline: none;
+  border-color: #6b9b7a;
+  box-shadow: 0 0 0 3px rgba(107, 155, 122, 0.25);
+}
+.form-group input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.error {
+  color: #f5a88a;
+  font-size: 0.9rem;
+  margin: 0 0 1rem;
+}
+
+.btn {
+  width: 100%;
+  padding: 0.9rem 1.25rem;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f2a1a;
+  background: linear-gradient(180deg, #8bc99a 0%, #6b9b7a 100%);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(107, 155, 122, 0.4);
+}
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+.btn:disabled {
+  opacity: 0.85;
+  cursor: not-allowed;
+}
+.btn.secondary {
+  margin-top: 1rem;
+  background: rgba(255, 255, 255, 0.12);
+  color: #e8efe8;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.btn.secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.result-card {
+  padding: 1.5rem 1.75rem;
+}
+.result-card h2 {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #8bc99a;
+  margin: 0 0 0.85rem;
+}
+.result-card .content {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+  white-space: pre-wrap;
+}
+.result-card .prose {
+  max-height: 40vh;
+  overflow-y: auto;
+}
+.social-content {
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+.result-card.social .content {
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border-left: 3px solid #6b9b7a;
+}
+
+.footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (min-width: 480px) {
+  .form-row {
+    gap: 1.25rem;
+  }
+  .hero {
+    padding: 4rem 1.5rem 2.5rem;
+  }
+}

@@ -21,6 +21,7 @@ This plan prioritizes **agent concepts and tooling** so you can speak to the sta
 | **1** | Cursor IDE + RAG fundamentals | Cursor workflows, RAG flow (chunk → embed → retrieve → generate), run the starter RAG example |
 | **2** | LangChain + MCP + multi-agent | Chains, tools, agent; minimal MCP server; LangGraph/CrewAI concepts |
 | **3** | Agentic AI evals + integration | What to measure (tool use, task completion, safety), evals mindset; tie the project together |
+| **4 (bonus)** | Hiking Trip Planner | Multi-agent: Explorer (geocode, weather, trails) → Planner (itinerary + social post) |
 
 ---
 
@@ -102,6 +103,28 @@ This plan prioritizes **agent concepts and tooling** so you can speak to the sta
 
 ---
 
+## Day 4 (bonus) — Multi-agent: Hiking Trip Planner
+
+A fun multi-agent demo that suggests trails near your home and drafts a social post to invite friends.
+
+- **Explorer agent:** Uses **geocoding** (Nominatim, free), **weather** (Open-Meteo, free), and mock **AllTrails-style trails** and **Google Maps–style directions** to research trails and conditions near the address you give.
+- **Planner agent:** Takes that research and writes a short **trip summary** (itinerary, what to bring) and a **social media post** to invite people to the hike.
+
+**Run it:** From the `hiking-planner/` folder with `ANTHROPIC_API_KEY` set:
+
+```bash
+cd Workday-AI-Agent-Prep/hiking-planner
+pip install -r requirements.txt
+python hiking_planner.py
+```
+
+Example input: *“I live at 123 Main St, Vancouver BC — suggest a trail and help me invite friends for this weekend.”*  
+Trails and ETA use **mock data** so it runs without AllTrails/Google API keys; you can plug in real APIs later.
+
+**Web UI (React + TypeScript):** In `hiking-planner/`, run the API with `uvicorn hiking_api:app --reload --port 8000`, then `cd hiking-planner-ui && npm install && npm run dev` — open http://localhost:5173 (proxies `/api` to the backend). See `hiking-planner/README.md`.
+
+---
+
 ## Starter project in this repo
 
 The `starter_project/` directory contains a minimal but runnable setup:
@@ -109,6 +132,8 @@ The `starter_project/` directory contains a minimal but runnable setup:
 - **RAG:** Ingest a few documents (e.g. HR/expense policy), embed, store in a vector store, and answer questions.
 - **LangChain agent:** A simple agent with tools (e.g. leave balance, policy lookup) to simulate HR/Finance-style workflows.
 - **Structure:** FastAPI-style layout (you can add a small API later); Python 3.10+.
+
+The **Hiking Trip Planner (Day 4 bonus)** lives in **`hiking-planner/`** (separate folder with its own requirements and Web UI).
 
 **How to run:**
 
@@ -123,9 +148,9 @@ python agent_simple.py      # Agent with tools (Day 2)
 python evals_simple.py      # Simple evals (Day 3)
 ```
 
-For the **MCP server** (Day 2), see the run commands in the Day 2 — MCP section above.
+For the **MCP server** (Day 2), see the run commands in the Day 2 — MCP section above. For the **Hiking Trip Planner** (Day 4), see `hiking-planner/README.md`.
 
-Use this as your playground for Days 1–3: add docs, add tools, add a few evals, and optionally run the MCP server from `mcp_server_hr/`.
+Use this as your playground for Days 1–3: add docs, add tools, add evals, run the MCP server. Use `hiking-planner/` for the multi-agent demo.
 
 ---
 

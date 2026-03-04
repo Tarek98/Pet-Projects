@@ -16,7 +16,7 @@ from langchain_core.messages import SystemMessage
 # Reuse the same tools and agent setup as agent_simple
 from agent_simple import get_leave_balance, lookup_policy, search_expense_guidelines
 
-load_dotenv()
+load_dotenv(override=True)  # .env overrides shell so the key in this project is used
 
 
 def build_executor():

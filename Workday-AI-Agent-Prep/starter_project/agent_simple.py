@@ -14,7 +14,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from langchain.agents import create_tool_calling_agent, AgentExecutor
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
-load_dotenv()
+load_dotenv(override=True)  # .env overrides shell so the key in this project is used
 
 # --- Mock HR/Finance tools (in production these would call real APIs) ---
 

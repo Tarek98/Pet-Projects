@@ -15,7 +15,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-load_dotenv()
+load_dotenv(override=True)  # .env overrides shell so the key in this project is used
 
 DATA_DIR = Path(__file__).resolve().parent / "data"
 PERSIST_DIR = Path(__file__).resolve().parent / "chroma_db"
